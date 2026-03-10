@@ -37,6 +37,30 @@
 
             <div class="d-flex align-items-center">
 
+                 <div class="dropdown ms-1 topbar-head-dropdown header-item">
+                    <button type="button" class="btn btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @if(session('locale', 'en') === 'es')
+                            <img src="{{ asset('backend/assets/images/flags/spain.svg') }}" alt="Header Language" height="20" class="rounded">
+                        @else
+                            <img src="{{ asset('backend/assets/images/flags/us.svg') }}" alt="Header Language" height="20" class="rounded">
+                        @endif
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+
+                        <!-- English -->
+                        <a href="{{ url('/lang/en') }}" class="dropdown-item notify-item py-2 {{ session('locale', 'en') === 'en' ? 'active' : '' }}" title="English">
+                            <img src="{{ asset('backend/assets/images/flags/us.svg') }}" alt="English" class="me-2 rounded" height="18">
+                            <span class="align-middle">English</span>
+                        </a>
+
+                        <!-- Spanish -->
+                        <a href="{{ url('/lang/es') }}" class="dropdown-item notify-item {{ session('locale') === 'es' ? 'active' : '' }}" title="Spanish">
+                            <img src="{{ asset('backend/assets/images/flags/spain.svg') }}" alt="Spanish" class="me-2 rounded" height="18">
+                            <span class="align-middle">Española</span>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="ms-1 header-item d-none d-sm-flex">
                     <button type="button" class="btn btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle" data-toggle="fullscreen">
                         <i class='bx bx-fullscreen fs-22'></i>

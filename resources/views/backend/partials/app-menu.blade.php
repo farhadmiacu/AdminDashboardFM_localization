@@ -78,6 +78,28 @@
                      </a>
                  </li>
 
+                 {{-- Brand Menu --}}
+                 <li class="nav-item">
+                     <a class="nav-link menu-link {{ request()->routeIs('admin.brands.*') ? '' : 'collapsed' }}" href="#sidebarBrand" data-bs-toggle="collapse" role="button"
+                         aria-expanded="{{ request()->routeIs('admin.brands.*') ? 'true' : 'false' }}" aria-controls="sidebarBrand">
+                         <i class="ri-award-line"></i> <span>Brand</span>
+                     </a>
+                     <div class="collapse menu-dropdown {{ request()->routeIs('admin.brands.*') ? 'show' : '' }}" id="sidebarBrand">
+                         <ul class="nav nav-sm flex-column">
+                             <li class="nav-item">
+                                 <a href="{{ route('admin.brands.create') }}" class="nav-link {{ request()->routeIs('admin.brands.create') ? 'active' : '' }}">
+                                     Add Brand
+                                 </a>
+                             </li>
+                             <li class="nav-item">
+                                 <a href="{{ route('admin.brands.index') }}" class="nav-link {{ request()->routeIs('admin.brands.index') ? 'active' : '' }}">
+                                     All Brands
+                                 </a>
+                             </li>
+                         </ul>
+                     </div>
+                 </li>
+
                  {{-- Category Menu --}}
                  <li class="nav-item">
                      <a class="nav-link menu-link {{ request()->routeIs('admin.categories.*') ? '' : 'collapsed' }}" href="#sidebarCategory" data-bs-toggle="collapse" role="button"

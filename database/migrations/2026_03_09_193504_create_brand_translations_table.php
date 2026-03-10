@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('brand_translations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
+            $table->string('name'); // The translated name of the brand
             $table->string('locale'); // e.g., 'en', 'fr', etc.
             $table->timestamps();
         });

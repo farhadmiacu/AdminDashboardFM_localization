@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\Farhad\BrandController;
 use App\Http\Controllers\Backend\Farhad\CategoryController;
 use App\Http\Controllers\Backend\Farhad\DashboardController;
 use App\Http\Controllers\Backend\Farhad\PackageController;
@@ -14,10 +15,30 @@ use App\Http\Controllers\Backend\Setting\StripeSettingController;
 use App\Http\Controllers\Backend\Setting\SystemSettingController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/lang/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'es'])) {
+        abort(400);
+    }
+
+    session(['locale' => $locale]);
+
+    return redirect()->back();
+});
+
+
 Route::middleware(['auth:web', 'role:admin,manager'])->prefix('admin')->name('admin.')->group(function () {
 
     // Dashboard route
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Brands routes
+    Route::get('brands', [BrandController::class, 'index'])->name('brands.index');
+    Route::get('brands/create', [BrandController::class, 'create'])->name('brands.create');
+    Route::post('brands', [BrandController::class, 'store'])->name('brands.store');
+    Route::get('brands/{brand}/edit', [BrandController::class, 'edit'])->name('brands.edit');
+    Route::put('brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
+    Route::delete('brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
 
     // Categories routes
     Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
